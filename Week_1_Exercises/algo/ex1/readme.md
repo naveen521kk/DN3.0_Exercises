@@ -1,4 +1,4 @@
-# Time Complexity
+### Time Complexity
 
 - **Add Operation**: average time complexity is $O(1)$.
 

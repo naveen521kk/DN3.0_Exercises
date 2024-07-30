@@ -1,4 +1,4 @@
-### Time Complexity Comparison
+### Time Complexity
 
 - **Linear Search**:
   - Best Case: O(1) (when the element is the first item)
