@@ -1,0 +1,32 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                           http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/aop
+                           http://www.springframework.org/schema/aop/spring-aop.xsd">
+    <!-- bean definitions here -->
+    <bean name="repo" class="com.library.repository.Repository"></bean>
+
+
+    
+    <bean name="book" class="com.library.service.BookService">
+        <!-- setter injection-->
+        <property name="repository" ref="repo"/>
+
+        <!-- constructor injection -->
+        <constructor-arg index="0" ref="repo"/>
+
+    </bean>
+
+    <bean name="logging" class="com.library.aspect.LoggingAspect"></bean>
+    <aop:config>
+        <aop:aspect id="aspect1" ref="logging">
+            <aop:pointcut id="pointcut1" expression="execution(public void com.library.service.BookService.read())"/> 
+            <aop:before pointcut-ref="pointcut1" method="logg"/>
+        </aop:aspect>
+    </aop:config>
+    
+
+
+</beans>
